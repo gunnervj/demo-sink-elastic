@@ -1,0 +1,6 @@
+connect-standalone /var/lib/kafka/connectors/connect-standalone.properties /var/lib/kafka/connectors/etc/demo-sink-elastic/MySinkConnector.properties /var/lib/kafka/connectors/etc/demo-sink-elastic/worker.properties
+
+
+connect-standalone /var/lib/kafka/connectors/etc/demo-sink-elastic/worker.properties /var/lib/kafka/connectors/etc/demo-sink-elastic/MySinkConnector.properties
+
+export CLASSPATH=/var/lib/kafka/connectors/share/java/demo-sink-elastic/*
