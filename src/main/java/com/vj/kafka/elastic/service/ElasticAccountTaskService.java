@@ -134,12 +134,18 @@ public class ElasticAccountTaskService implements TaskService {
     private Account transformSourceToAccount(SourceDataModel source, boolean excludeTransaction) {
         List<Transaction> transactions = null;
         log.info("Transforming : " + source.toString());
-        ZonedDateTime zdt = ZonedDateTime.of(source.getTransactionDate(), ZoneId.systemDefault());
+
+        Long transactionDate = null;
+        if (null != source.getTransactionDate()) {
+            ZonedDateTime zdt = ZonedDateTime.of(source.getTransactionDate(), ZoneId.systemDefault());
+            transactionDate = zdt.toInstant().toEpochMilli();
+        }
+
         if (!excludeTransaction) {
             Transaction transaction = Transaction.builder()
                     .transactionId(source.getTransactionId())
                     .type(source.getType())
-                    .transactionDate(zdt.toInstant().toEpochMilli())
+                    .transactionDate(transactionDate)
                     .amount(source.getAmount())
                     .build();
             if (null != transaction && transaction.isValid()) {

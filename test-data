@@ -1,0 +1,18 @@
+{
+   "requestType" : "ACCOUNT_CREATE",
+   "accountId" : "ACT002",
+   "accountName" : "Test Account 002",
+   "accountBalance" : 4900,
+   "transactionDate" : "2011-12-03T10:15:30",
+   "transactionId" : 6,
+   "amount" : 100,
+   "type" : "DEBIT"
+}
+
+
+{
+   "requestType" : "ADD_",
+   "accountId" : "ACT002",
+   "accountName" : "Test Account 002",
+   "accountBalance" : 4900
+}

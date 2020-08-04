@@ -34,15 +34,17 @@ services:
     networks:
       - elastic-kafka
     volumes:
-      - ${MOUNT_DIR}:/var/lib/kafka/connectors
       - ${KAFKA_DATA_DIR}:/var/lib/kafka/data
     ports:
       - 9092:9092
-      - 9093:9093
+    expose:
+      - 19092
+      - 9092
     environment:
-      KAFKA_ADVERTISED_LISTENERS: LISTENER_DOCKER_INTERNAL://kafka:19092,LISTENER_DOCKER_EXTERNAL://${DOCKER_HOST_IP:-127.0.0.1}:9092
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: LISTENER_DOCKER_INTERNAL:PLAINTEXT,LISTENER_DOCKER_EXTERNAL:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: LISTENER_DOCKER_INTERNAL
+      KAFKA_LISTERNERS: INTERNAL://kafka:19092,EXTERNAL://localhost:9092
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:19092,EXTERNAL://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
       KAFKA_ZOOKEEPER_CONNECT: "zookeeper:2181"
       KAFKA_BROKER_ID: 1
       KAFKA_LOG4J_LOGGERS: "kafka.controller=INFO,kafka.producer.async.DefaultEventHandler=INFO,state.change.logger=INFO"
@@ -62,10 +64,22 @@ services:
       - elastic-kafka
     depends_on:
       - elastic-search
+  demo-sink-el-std:
+    image: kafka-connectors/demo-sink-elastic:latest
+    container_name: demo-sink-elastic
+    hostname: es.sink
+    networks:
+      - elastic-kafka
+    volumes:
+      - ${DEMO_SINK_ELASTIC_OFFSET}:/demo-sink-elastic/offsets
+    depends_on:
+      - kafka
+      - elastic-search
 
 volumes:
   data01:
     driver: local
+
 networks:
   elastic-kafka:
     driver: bridge
