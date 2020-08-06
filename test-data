@@ -11,8 +11,22 @@
 
 
 {
-   "requestType" : "ADD_",
+   "requestType" : "ADD_TRANSACTION",
    "accountId" : "ACT002",
-   "accountName" : "Test Account 002",
-   "accountBalance" : 4900
+   "accountBalance" : 4800,
+   "transactionDate" : "2011-12-03T10:15:30",
+   "transactionId" : 7,
+   "amount" : 100,
+   "type" : "DEBIT"
+}
+
+
+{
+   "requestType" : "ADD_TRANSACTION",
+   "accountId" : "ACT002",
+   "accountBalance" : 4950,
+   "transactionDate" : "2011-12-03T10:15:30",
+   "transactionId" : 8,
+   "amount" : 150,
+   "type" : "CREDIT"
 }
