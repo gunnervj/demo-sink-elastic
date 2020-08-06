@@ -23,14 +23,16 @@ For available connectors: https://www.confluent.io/hub/?_ga=2.61129070.312483398
 But, when the avialable plugins does not fit our reqirement, we might sometime need to write our own connector. This project is to demonstrate such a requirement. We transform source data from 
 one format into another, perform some validations and then load into elastic search.
 
-The project has room for improvement and is for a standalone, demo purpose.
+The project has room for improvement and is for demo purpose for a standalone environment.
 
-Set Up
+**Set Up**
 
 - Checkout the project.
 - For linux/mac users, run the demo.sh
+- Data to be published into kafka can be found under test-data.txt
 
 **Pre-requistes**
 
-- Have docker intalled in the running machine. As we are going to use containers.
+- Have docker and docker-compose installed in the running machine. As we are going to use containers.
+
 
