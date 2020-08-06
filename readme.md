@@ -36,3 +36,4 @@ The project has room for improvement and is for demo purpose for a standalone en
 - Have docker and docker-compose installed in the running machine. As we are going to use containers.
 
 
+Maven Arch Type : https://github.com/jcustenborder/kafka-connect-archtype
